@@ -1,23 +1,28 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Landing from './Landing';
-import Search from './Search';
-
-const FourOhFour = () => <h1>404</h1>;
-
-const App = () => (
-  <BrowserRouter>
-    <div className="app">
-      <Switch>
-        <Route exact path="/" component={Landing} />
-        <Route path="/search" component={Search} />
-        <Route component={FourOhFour} />
-      </Switch>
-    </div>
-  </BrowserRouter>
-);
+/* --- Components --- */
+import App from './App';
 
 /* --- Render application --- */
-render(<App />, document.getElementById('app'));
+const renderApp = () => {
+  render(<App />, document.getElementById('app'));
+};
+
+renderApp();
+
+/**
+ * Only for DEV
+ *
+ * If Hot Module Loading is enabled,
+ * render the whole app
+ *
+ * ------
+ *
+ * the `module` variable is comming from webpack itself
+ */
+if (module.hot) {
+  module.hot.accept('./App', () => {
+    renderApp();
+  });
+}

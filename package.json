@@ -7,6 +7,7 @@
     "babel-register": "6.24.1",
     "compression": "1.6.2",
     "cors": "2.8.3",
+    "cross-env": "^5.1.1",
     "express": "4.15.3",
     "lodash": "4.17.4",
     "preact": "8.1.0",
@@ -57,6 +58,11 @@
     "react-test-renderer": "15.5.4",
     "webpack-dev-server": "2.4.5"
   },
+  "jest": {
+    "snapshotSerializers": [
+      "jest-serializer-enzyme"
+    ]
+  },
   "license": "MIT",
   "main": "server.js",
   "name": "complete-intro-to-react",
@@ -66,7 +72,10 @@
     "build": "webpack",
     "dev": "webpack-dev-server",
     "format": "prettier --write --bracket-spacing=true --jsx-bracket-same-line=false --parser=flow --print-width=120 --semi=true --single-quote=true --tab-width=2 --trailing-comma=none --use-tabs=false \"js/**/*.{js,jsx}\"",
-    "lint": "eslint js/**/*.{js,jsx} --quiet"
+    "lint": "eslint js/**/*.{js,jsx} --quiet",
+    "test": "cross-env NODE_ENV=test jest",
+    "test:c": "cross-env NODE_ENV=test jest --coverage",
+    "test:u": "cross-env NODE_ENV=test jest -u"
   },
   "version": "3.0.0"
 }
