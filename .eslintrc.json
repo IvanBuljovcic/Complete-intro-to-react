@@ -2,10 +2,11 @@
   "env": {
     "browser": true,
     "es6": true,
-    "node": true,
-    "jest": true
+    "jest": true,
+    "node": true
   },
   "extends": [
+    "plugin:flowtype/recommended",
     "airbnb",
     "prettier",
     "prettier/react"
@@ -19,6 +20,7 @@
     "sourceType": "module"
   },
   "plugins": [
+    "flowtype",
     "prettier"
   ]
 }

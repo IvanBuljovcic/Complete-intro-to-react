@@ -1,6 +1,11 @@
+/* @flow */
+
+// --- Imports
 import React from 'react';
-import { string } from 'prop-types'; // Excluded from React
 import styled from 'styled-components'; // !!!
+/* Removed by @flow
+  import { string } from 'prop-types'; // Excluded from React
+*/
 
 const borderColor = '#333';
 
@@ -21,7 +26,7 @@ const Image = styled.img`
   margin-right: 10px;
 `;
 
-const ShowCard = props => (
+const ShowCard = (props: { poster: string, title: string, year: string, description: string }) => (
   <Wrapper>
     <Image src={`/public/img/posters/${props.poster}`} alt={`${props.title} Show Poster`} />
     <div>
@@ -32,13 +37,15 @@ const ShowCard = props => (
   </Wrapper>
 );
 
-/* --- As Interface in Angular 2 --- */
-// If optional, AirBnB requires that it has a default value
-ShowCard.propTypes = {
-  poster: string.isRequired,
-  title: string.isRequired,
-  year: string.isRequired,
-  description: string.isRequired
-};
+/* Removed by @flow
+  // --- As Interface in Angular 2 ---
+  // If optional, AirBnB requires that it has a default value
+  ShowCard.propTypes = {
+    poster: string.isRequired,
+    title: string.isRequired,
+    year: string.isRequired,
+    description: string.isRequired
+  };
+*/
 
 export default ShowCard;

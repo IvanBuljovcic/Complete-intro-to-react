@@ -1,9 +1,33 @@
-import React, { Component } from 'react';
-import preload from '../data.json';
+/* @flow */
 
+// --- Imports
+import React, { Component } from 'react';
+
+// --- Components
 import ShowCard from './ShowCard';
 
-class Search extends Component {
+type Props = {
+  shows: Array<Show>
+};
+
+type State = {
+  searchTerm: string
+};
+
+/* C)
+* Also needs to be imported along with <Props, State, Show>
+  type Show = {
+    title: string,
+    description: string,
+    year: string,
+    imdbID: string,
+    trailer: string,
+    poster: string
+  };
+*/
+
+/* --- Search Class --- */
+class Search extends Component<Props, State> {
   /* B) Replaced via state object when defining handleSearchTermChange as arrow function
 
     constructor(props) {
@@ -18,12 +42,20 @@ class Search extends Component {
     }
   */
 
+  defaultProps = {
+    shows: []
+  };
+
   // B)
   state = {
     searchTerm: ''
   };
 
-  handleSearchTermChange = event => {
+  props: {
+    shows: Array<Show>
+  };
+
+  handleSearchTermChange = (event: SyntheticKeyboardEvent<{}> & { target: HTMLInputElement }) => {
     this.setState({ searchTerm: event.target.value });
 
     /* DO NOT set state as below.
@@ -53,7 +85,7 @@ class Search extends Component {
           - The component should always look the same, given the same parameters
         */}
         <div>
-          {preload.shows
+          {this.props.shows
             .filter(
               show =>
                 `${show.title} ${show.description}`.toUpperCase().indexOf(this.state.searchTerm.toUpperCase()) >= 0
