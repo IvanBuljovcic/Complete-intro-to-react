@@ -1,7 +1,7 @@
 /* @flow */
 
 // --- Imports
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'; // !!!
 /* Removed by @flow
@@ -29,17 +29,26 @@ const Image = styled.img`
   margin-right: 10px;
 `;
 
-const ShowCard = (props: Show) => (
-  <Wrapper to={`/details/${props.imdbID}`}>
-    console.log(props);
-    <Image src={`/public/img/posters/${props.poster}`} alt={`${props.title} Show Poster`} />
-    <div>
-      <h3>{props.title}</h3>
-      <h4>({props.year})</h4>
-      <p>{props.description}</p>
-    </div>
-  </Wrapper>
-);
+class ShowCard extends Component<*, *> {
+  shouldComponentUpdate() {
+    return false;
+  }
+
+  props: Show;
+
+  render() {
+    return (
+      <Wrapper to={`/details/${this.props.imdbID}`}>
+        <Image src={`/public/img/posters/${this.props.poster}`} alt={`${this.props.title} Show Poster`} />
+        <div>
+          <h3>{this.props.title}</h3>
+          <h4>({this.props.year})</h4>
+          <p>{this.props.description}</p>
+        </div>
+      </Wrapper>
+    );
+  }
+}
 
 /* Removed by @flow
   // --- As Interface in Angular 2 ---
