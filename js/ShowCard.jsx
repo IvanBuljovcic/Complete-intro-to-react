@@ -2,6 +2,7 @@
 
 // --- Imports
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components'; // !!!
 /* Removed by @flow
   import { string } from 'prop-types'; // Excluded from React
@@ -11,13 +12,15 @@ const borderColor = '#333';
 
 // Tagged template literal
 // Gets run through autoprefixer
-const Wrapper = styled.div`
+const Wrapper = styled((Link: any))`
   width: 32%;
   padding-right: 10px;
   margin-bottom: 25px;
   border: 2px solid ${borderColor};
   border-radius: 4px;
   overflow: hidden;
+  color: black;
+  text-decoration: none;
 `;
 
 const Image = styled.img`
@@ -26,8 +29,9 @@ const Image = styled.img`
   margin-right: 10px;
 `;
 
-const ShowCard = (props: { poster: string, title: string, year: string, description: string }) => (
-  <Wrapper>
+const ShowCard = (props: Show) => (
+  <Wrapper to={`/details/${props.imdbID}`}>
+    console.log(props);
     <Image src={`/public/img/posters/${props.poster}`} alt={`${props.title} Show Poster`} />
     <div>
       <h3>{props.title}</h3>

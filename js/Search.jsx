@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 
 // --- Components
+import Header from './Header';
 import ShowCard from './ShowCard';
 
 type Props = {
@@ -69,16 +70,7 @@ class Search extends Component<Props, State> {
   render() {
     return (
       <div className="search">
-        <header>
-          <h1>S-Video</h1>
-          <input
-            value={this.state.searchTerm}
-            type="text"
-            placeholder="Search"
-            // A) onChange={this.handleSearchTermChange.bind(this)} -- Creates a new function each time Render is called
-            onChange={this.handleSearchTermChange}
-          />
-        </header>
+        <Header searchTerm={this.state.searchTerm} handleSearchTermChange={this.handleSearchTermChange} showSearch />
 
         {/*
           - When passing variables like Date, pass the variable TO the component, do not assign it from the component.
@@ -90,15 +82,7 @@ class Search extends Component<Props, State> {
               show =>
                 `${show.title} ${show.description}`.toUpperCase().indexOf(this.state.searchTerm.toUpperCase()) >= 0
             )
-            .map(show => (
-              <ShowCard
-                title={show.title}
-                description={show.description}
-                poster={show.poster}
-                year={show.year}
-                key={show.imdbID}
-              />
-            ))}
+            .map(show => <ShowCard key={show.imdbID} {...show} />)}
         </div>
       </div>
     );
