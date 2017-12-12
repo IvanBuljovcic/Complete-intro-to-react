@@ -5,12 +5,7 @@
     "jest": true,
     "node": true
   },
-  "extends": [
-    "plugin:flowtype/recommended",
-    "airbnb",
-    "prettier",
-    "prettier/react"
-  ],
+  "extends": ["airbnb", "prettier", "prettier/react"],
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
@@ -19,8 +14,16 @@
     "ecmaVersion": 7,
     "sourceType": "module"
   },
-  "plugins": [
-    "flowtype",
-    "prettier"
-  ]
+  "plugins": ["prettier"],
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack.config.js"
+      }
+    }
+  },
+  "rules": {
+    "import/no-extraneous-dependencies": "off",
+    "import/no-unresolved": "off"
+  }
 }
