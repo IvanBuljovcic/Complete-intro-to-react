@@ -1,0 +1,55 @@
+/* --- Component | App Header --- */
+.app-header {
+  display: grid;
+  padding: 0 1rem;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: 1.2rem 3.6rem 1.2rem;
+  grid-gap: .5rem .5rem;
+
+  background-color: map(colors, default, base);
+
+  .header__logo {
+    grid-row: 2;
+    grid-column: 1 / span 2;
+    align-self: center;
+    justify-self: center;
+
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+      max-height: 6rem;
+    }
+  }
+
+  .header__search {
+    grid-row: 2 / 3;
+    grid-column: 3 / 5;
+
+    input {
+      width: 100%;
+      height: 100%;
+
+      border: none;
+      border-bottom: 1px solid #fff9;
+      outline: none;
+      background-color: transparent;
+
+      color: #fffc;
+
+      &::placeholder {
+        color: #fffc;
+      }
+    }
+  }
+
+  .header__results {
+    grid-row: 2 / 3;
+    grid-column: 5 / -1;
+    align-self: end;
+
+    font-size: 2rem;
+    justify-self: end;
+  }
+}

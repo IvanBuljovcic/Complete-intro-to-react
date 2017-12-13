@@ -1,1 +1,3 @@
-body { background: papayawhip; }
+@import './defaults/_reset.css';
+@import './defaults/_base-config.css';
+@import './defaults/_typography.css';

@@ -4,3 +4,5 @@ brands:
   twitter: '#1DA1F2'
   google: '#DD4839'
   linkedin: '#0077B5'
+default:
+  base: '#F11E22'

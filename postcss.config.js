@@ -9,6 +9,7 @@ module.exports = {
       maps: ['colors.yml', 'media.yml', 'zindex.yml']
     },
     'postcss-for': {},
+    'postcss-color-hex-alpha': {},
     'postcss-sorting': sortingConfig,
     'css-mqpacker': {
       sort: true

@@ -1,0 +1,25 @@
+/* Defults | Typography */
+
+@font-face {
+  font-weight: bold;
+  font-family: 'Title';
+  font-style: normal;
+  src: url(../fonts/PalookaBB/PalookaBB.ttf);
+}
+
+@font-face {
+  font-weight: 400;
+  font-family: 'Title Italic';
+  font-style: italic;
+  src: url(../fonts/PalookaBB/PalookaBB_ital.ttf);
+}
+
+html { font-size: 10px; }
+
+.title {
+  font-family: 'Title', Arial, sans-serif;
+}
+
+.title--italic {
+  font-family: 'Title Italic', Arial, sans-serif;
+}
