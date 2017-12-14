@@ -60,6 +60,7 @@
     "nodemon": "1.11.0",
     "postcss-color-hex-alpha": "^3.0.0",
     "postcss-discard-comments": "^2.0.4",
+    "postcss-extend": "^1.0.5",
     "postcss-for": "^2.1.1",
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.9",

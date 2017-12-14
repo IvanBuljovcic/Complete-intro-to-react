@@ -8,6 +8,7 @@ module.exports = {
       basePath: './public/css/variables',
       maps: ['colors.yml', 'media.yml', 'zindex.yml']
     },
+    'postcss-extend': {},
     'postcss-for': {},
     'postcss-color-hex-alpha': {},
     'postcss-sorting': sortingConfig,

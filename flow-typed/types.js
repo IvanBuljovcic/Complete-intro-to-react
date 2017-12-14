@@ -6,11 +6,11 @@ declare var module: {
   }
 };
 
-export type Show = {
-  title: string,
+export type Person = {
+  avatar: string,
   description: string,
-  year: string,
-  imdbID: string,
-  trailer: string,
-  poster: string
+  gender: string,
+  id: string,
+  first_name: string,
+  last_name: string
 };

@@ -7,7 +7,11 @@ import { Link } from 'react-router-dom';
 // $FlowFixMe
 require('CSS/components/_app-header.css');
 
-const AppHeader = (props: { results: string }) => (
+type Props = {
+  results: number
+};
+
+const AppHeader = (props: Props) => (
   <header className="app-header">
     <Link to="/" className="header__logo">
       <img src="/public/img/logo-marvel.svg" alt="Marvel logo" />
@@ -18,9 +22,13 @@ const AppHeader = (props: { results: string }) => (
     </div>
 
     <div className="header__results">
-      <span>{props.results}</span> results found
+      <span>{props.results}</span> people in database
     </div>
   </header>
 );
+
+AppHeader.defaultProps = {
+  results: 0
+};
 
 export default AppHeader;

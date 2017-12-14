@@ -5,4 +5,5 @@ brands:
   google: '#DD4839'
   linkedin: '#0077B5'
 default:
-  base: '#F11E22'
+  base: 'firebrick'
+  marvel: '#F11E22'

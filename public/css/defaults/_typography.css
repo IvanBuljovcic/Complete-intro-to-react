@@ -16,6 +16,8 @@
 
 html { font-size: 10px; }
 
+body { font-family: Helvetica, Arial, Tahoma, sans-serif; }
+
 .title {
   font-family: 'Title', Arial, sans-serif;
 }
