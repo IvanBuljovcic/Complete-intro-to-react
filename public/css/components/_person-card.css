@@ -18,9 +18,10 @@
 
   &__info {
     display: grid;
+
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 2fr;
-    grid-template-areas: "title" "description";
+    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-areas: "title" "description" "tags";
     grid-area: info;
 
     .info__title {
@@ -31,10 +32,25 @@
     }
 
     .info__description {
+      grid-area: description;
       align-self: start;
 
       font-size: 1.4rem;
       line-height: 1.2;
+    }
+
+    .info__tags {
+      display: grid;
+      padding-bottom: .5rem;
+
+      grid-template-columns: repeat(3, 1fr);
+      grid-area: tags;
+      grid-gap: .5rem;
+      align-self: end;
+
+      font-weight: 700;
+
+      span { text-align: center; }
     }
   }
 }

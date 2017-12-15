@@ -1,3 +1,7 @@
 @import './defaults/_reset.css';
 @import './defaults/_base-config.css';
 @import './defaults/_typography.css';
+
+.landing {
+  grid-columns: 1 / -1;
+}

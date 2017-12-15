@@ -7,10 +7,14 @@ declare var module: {
 };
 
 export type Person = {
-  avatar: string,
-  description: string,
-  gender: string,
   id: string,
-  first_name: string,
-  last_name: string
+  avatar: string,
+  name: {
+    first_name: string,
+    last_name: string
+  },
+  gender: string,
+  description: string,
+  birth_date: string,
+  tags: Array<string>
 };
