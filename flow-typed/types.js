@@ -18,3 +18,8 @@ export type Person = {
   birth_date: string,
   tags: Array<string>
 };
+
+export type Tag = {
+  id: number,
+  name: string
+};

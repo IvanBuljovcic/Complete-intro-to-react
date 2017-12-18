@@ -7,6 +7,18 @@
 
   &__aside {
     grid-area: aside;
+
+    .aside__tag {
+      display: block;
+      margin: .5rem 0;
+
+      font-size: 1.4rem;
+      text-align: center;
+
+      input:checked + label {
+        background: firebrick;
+      }
+    }
   }
 
   &__main {
