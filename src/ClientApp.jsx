@@ -18,5 +18,5 @@ const renderApp = () => render(<Routing />, rootElement);
 renderApp(); // First render
 
 if (module.hot) {
-  module.hot.accept('./Routing', () => renderApp());
+  module.hot.accept('./Routing', () => renderApp);
 }

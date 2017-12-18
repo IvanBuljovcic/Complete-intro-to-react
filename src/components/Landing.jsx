@@ -1,18 +1,68 @@
 /* @flow */
 import React from 'react';
+import styled from 'styled-components';
 
-const Landing = (props: { people: Person }) => (
-  <div className="landing">
-    <div className="landing__aside">
-      <h1>Aside</h1>
-    </div>
+import Aside from './Aside';
+import PersonCard from './PersonCard';
 
-    <div className="landing__main">
+// $FlowFixMe
+require('CSS/components/_landing.css');
+
+type Props = {
+  props: {
+    people: Array<Person>,
+    searchTerm: string,
+    tags: Array<string>
+  }
+};
+
+type State = {
+  activeTags: Array<string>
+}
+
+const CardsWrap = styled.section`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-row: auto;
+  grid-gap: .5rem .5rem;
+`;
+
+class Landing extends React.Component<Props, State> {
+  state = {
+    activeTags: []
+  }
+
+  handleTagToggle = (event: SyntheticEvent<HTMLButtonElement> & { target: HTMLBaseElement }) => (
+    let newActiveTags = this.state.activeTags;
+
+    newActiveTags.push(event.target.value)
+
+    this.setState({
+      activeTags: newActiveTags
+    })
+  );
+
+  render() {
+    return (
+      <div className="landing">
+    <Aside tags={this.props.tags} />
+
+    <main className="landing__main">
       <h1>
-        <pre><code>{JSON.stringify(props.people, null, 4)}</code></pre>
+        {this.props.searchTerm}
       </h1>
-    </div>
+
+      <CardsWrap>
+        {this.props.people
+          .filter(person =>
+            `${person.name.first_name} ${person.name.last_name}`.toUpperCase().includes(this.props.searchTerm.toUpperCase())
+          )
+          .map(person => <PersonCard key={person.id} {...person} />)}
+      </CardsWrap>
+    </main>
   </div>
-);
+    )
+  }
+}
 
 export default Landing;

@@ -2,6 +2,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
+// $FlowFixMe
+import 'CSS/main.css';
 
 // --- Components
 import Details from './components/Details';
@@ -32,9 +34,15 @@ class Routing extends React.Component<*, *> {
     return (
       <BrowserRouter>
         <Wrap>
-          <Header handleSearch={this.handleSearchTermChange} searchTerm={this.state.searchTerm} />
+          <Header handleChange={this.handleSearchTermChange} searchTerm={this.state.searchTerm} />
           <Switch>
-            <Route exact path="/" component={props => <Landing people={preload.people} {...props} />} />
+            <Route
+              exact
+              path="/"
+              component={props => (
+                <Landing people={preload.people} tags={preload.tags} searchTerm={this.state.searchTerm} {...props} />
+              )}
+            />
             <Route path="/details/:id" component={Details} />
             <Route component={FourOhFour} />
           </Switch>
