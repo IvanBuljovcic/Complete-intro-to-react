@@ -1,13 +1,16 @@
 /* @flow */
 
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { getAPIDetails } from './actionCreators';
 
 import Header from './Header';
 import Spinner from './Spinner';
 
 type Props = {
-  // show: Show
+  show: Show,
+  rating: string,
+  getAPIDetails: Function
 };
 
 type State = {
@@ -17,28 +20,20 @@ type State = {
 };
 
 class Details extends Component<Props, State> {
-  state = {
-    apiData: {
-      rating: ''
-    }
-  };
-
   componentDidMount() {
-    axios.get(`http://localhost:3000/${this.props.show.imdbID}`).then((response: { data: { rating: string } }) => {
-      this.setState({ apiData: response.data });
-    });
+    if (!this.props.rating) {
+      this.props.getAPIDetails();
+    }
   }
 
-  props: {
-    show: Show
-  };
+  props: Props;
 
   render() {
     const { title, description, year, poster, trailer } = this.props.show;
     let ratingComponent;
 
-    if (this.state.apiData.rating) {
-      ratingComponent = <h3>{this.state.apiData.rating}</h3>;
+    if (this.props.rating) {
+      ratingComponent = <h3>{this.props.rating}</h3>;
     } else {
       ratingComponent = <Spinner />;
     }
@@ -46,8 +41,6 @@ class Details extends Component<Props, State> {
     return (
       <div className="details">
         <h1>Details</h1>
-        {/* <pre><code>{JSON.stringify(props, null, 4)}</code></pre> */}
-
         <Header />
 
         <section>
@@ -73,4 +66,20 @@ class Details extends Component<Props, State> {
   }
 }
 
-export default Details;
+// ownProps == props passed down from the parent
+// In this case == `show`
+const mapStateToProps = (state, ownProps) => {
+  const apiData = state.apiData[ownProps.show.imdbID] ? state.apiData[ownProps.show.imdbID] : {}; // or { apiData: '' }
+
+  return {
+    rating: apiData.rating
+  };
+};
+
+const mapDispatchToProps = (dispatch: Function, ownProps) => ({
+  getAPIDetails() {
+    dispatch(getAPIDetails(ownProps.show.imdbID));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Details);
