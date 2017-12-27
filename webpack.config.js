@@ -13,11 +13,10 @@ module.exports = {
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
-    './js/ClientApp.jsx'
+    './js/App.jsx'
   ],
   module: {
-    rules: [
-      {
+    rules: [{
         enforce: 'pre',
         test: /\.jsx?$/,
         loader: 'eslint-loader',
@@ -26,6 +25,27 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              importLoaders: 1
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              config: {
+                path: './postcss.config.js'
+              }
+            }
+          }
+        ]
       }
     ]
   },

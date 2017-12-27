@@ -1,13 +1,24 @@
 /* @flow */
 
 import axios from 'axios';
-import { SET_SEARCH_TERM, ADD_API_DATA } from './actions';
+import {
+  SET_SEARCH_TERM,
+  ADD_API_DATA,
+  SET_SELECT_VALUE
+} from './actions';
 
 export function setSearchTerm(searchTerm: string) {
   return {
     type: SET_SEARCH_TERM,
     payload: searchTerm
   };
+}
+
+export function setSelectValue(selectValue: string) {
+  return {
+    type: SET_SELECT_VALUE,
+    payload: selectValue
+  }
 }
 
 export function addAPIData(apiData: Show) {
