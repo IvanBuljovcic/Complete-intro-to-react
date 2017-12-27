@@ -7,20 +7,13 @@
 import {
   combineReducers
 } from 'redux';
+
 import {
-  SET_SEARCH_TERM,
   ADD_API_DATA,
-  SET_SELECT_VALUE
+  POST_API_DATA,
+  SET_SELECT_VALUE,
+  SET_TEXT
 } from './actions';
-
-// --- Set name to be the same as the state name
-const searchTerm = (state = '', action: Action) => {
-  if (action.type === SET_SEARCH_TERM) {
-    return action.payload;
-  }
-
-  return state;
-};
 
 const selectValue = (state = '', action: Action) => {
   if (action.type === SET_SELECT_VALUE) {
@@ -30,26 +23,37 @@ const selectValue = (state = '', action: Action) => {
   return state
 };
 
+const setText = (state = '', action: Action) => {
+  if (action.type === SET_TEXT) {
+    return action.payload;
+  }
+
+  return state;
+};
+
 const apiData = (state = {}, action: Action) => {
   if (action.type === ADD_API_DATA) {
-    /* --- Same as below
-     * const key = action.payload.imdbID;
-     * const obj = {}
-     * obj[key] = action.payload
-     */
-
     return Object.assign({}, state, {
-      [action.payload.imdbID]: action.payload
+      [action.payload.version.key]: action.payload
     });
   }
 
   return state;
 };
 
+const article = (state = {}, action: Action) => {
+  if (action.type === POST_API_DATA) {
+    return Object.assign({}, state, {
+      [action.payload.version.key]: action.payload
+    })
+  }
+}
+
+
 const rootReducer = combineReducers({
   apiData,
-  searchTerm,
-  selectValue
+  selectValue,
+  setText
 });
 
 export default rootReducer;

@@ -6,7 +6,10 @@ import { connect } from 'react-redux';
 // import { Async } from 'react-select';
 // import styled from 'styled-components';
 
-import { setSelectValue } from '../redux/actionCreators';
+import { getAPIDetails, setSelectValue } from '../redux/actionCreators';
+
+require('CSS/components/article.css'); // eslint-disable-line
+require('CSS/components/button.css'); // eslint-disable-line
 
 type Props = {
   article: ArticleType,
@@ -41,25 +44,25 @@ class Article extends React.Component<Props, *> {
     return (
       <div className="article">
         <main className="article__body">
-          <Link to="/">Back</Link>
           <h1 className="body__title">{title}</h1>
           <div className="body__description">{text}</div>
-          <span>{createdAt}</span>
+          <span className="body__date">Created at: {createdAt}</span>
         </main>
 
-        <aside>
+        <aside className="article__aside">
           <form>
-            <button onClick={this.handleSave}>SAVE</button>
-            <button onClick={this.handlePublish}>PUBLISH</button>
-            <Link to={`/edit/:articleName/:${versions.name}?`}>EDIT</Link>
+            <button className="btn" onClick={this.handleSave}>SAVE</button>
+            <button className="btn" onClick={this.handlePublish}>PUBLISH</button>
 
             <select onChange={handleSelect} value={selectValue}>
               <option disabled value="">Choose version</option>
               {versions.map(
-                version => <option key={version.key} value={version.name}>{version.name}</option>
+                ver => <option key={ver.key} value={ver.name}>{ver.name}</option>
               )}
             </select>
           </form>
+
+          <Link to={`/edit/${this.props.article.articleName}`} className="btn">EDIT</Link>
         </aside>
       </div>
 
@@ -67,10 +70,22 @@ class Article extends React.Component<Props, *> {
   }
 }
 
-const mapStateToProps = state => ({ selectValue: state.selectValue });
+const mapStateToProps = (state, ownProps) => {
+  const apiData = state.apiData[ownProps.article.versions.name] ? state.apiData[ownProps.article.versions.name] : {};
+
+  return {
+    selectValue: state.selectValue,
+    version: apiData
+  }
+};
+
 const mapDispatchToProps = (dispatch: Function) => ({
   handleSelect(event) {
     dispatch(setSelectValue(event.target.value))
+  },
+
+  selectVersion(event) {
+    dispatch(getAPIDetails(event.target.value));
   }
 })
 

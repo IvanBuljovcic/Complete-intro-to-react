@@ -1,0 +1,31 @@
+.pagination {
+  display: block;
+
+  grid-area: pagination;
+  // grid-template-columns: auto;
+  // grid-template-rows: auto;
+  // grid-gap: .3rem;
+  // justify-items: center;
+
+  font-size: 0;
+  text-align: center;
+
+  button {
+    display: inline-block;
+    width: 4rem;
+    padding: .2rem;
+    margin: 0 .2rem;
+
+    appearance: none;
+    background: none;
+    border: 1px solid map(colors, default, base);
+
+    font-size: 1.6rem;
+
+    &.active {
+      background: map(colors, brands, facebook);
+
+      color: white;
+    }
+  }
+}

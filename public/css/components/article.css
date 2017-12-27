@@ -1,0 +1,43 @@
+.article {
+  display: grid;
+  width: 80%;
+  margin: 2rem auto;
+
+  grid-template-columns: 8fr 2fr;
+  grid-template-rows: auto;
+  grid-template-areas: "main aside";
+  grid-gap: 0 1rem;
+
+  &__body {
+    grid-area: main;
+
+    .body__title {
+      margin-bottom: 2rem;
+      font-size: 2.4rem;
+    }
+
+    .body__description {
+      font-size: 1.4rem;
+      line-height: 1.2;
+    }
+
+    .body__date {
+      display: block;
+      margin-top: 1.4rem;
+
+      font-size: 1.2rem;
+      font-family: Helvetica;
+      text-transform: uppercase;
+    }
+  }
+
+  &__aside {
+    grid-area: aside;
+
+    form {
+      select {
+        width: 100%;
+      }
+    }
+  }
+}

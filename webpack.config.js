@@ -56,6 +56,12 @@ module.exports = {
   },
   plugins: [new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin()],
   resolve: {
+    alias: {
+      Comps: path.join(__dirname, './src/components'),
+      CSS: path.join(__dirname, '/public/css'),
+      Fonts: path.join(__dirname, '/public/fonts'),
+      Images: path.join(__dirname, './public/images')
+    },
     extensions: ['.js', '.jsx', '.json']
   },
   stats: {

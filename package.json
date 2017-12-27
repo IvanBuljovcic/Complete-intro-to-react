@@ -1,5 +1,5 @@
 {
-  "author": "Brian Holt <btholt@gmail.com>",
+  "author": "Ivan Buljovcic <ivan.buljovcic@gmail.com>",
   "dependencies": {
     "axios": "0.16.1",
     "babel-plugin-dynamic-import-webpack": "1.0.1",
@@ -20,6 +20,7 @@
     "react-router-dom": "4.1.1",
     "react-select": "^1.1.0",
     "redux": "3.6.0",
+    "redux-form": "^7.2.0",
     "redux-thunk": "2.2.0",
     "styled-components": "2.0.0",
     "webpack": "2.6.1",

@@ -1,0 +1,17 @@
+.article-card {
+  padding: .5rem;
+
+  border: 2px solid #000;
+
+  overflow: hidden;
+
+  color: #000;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  text-decoration: none;
+
+  h1 {
+    font-size: 2.1rem;
+    font-weight: 900;
+  }
+}

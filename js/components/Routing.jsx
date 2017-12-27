@@ -11,6 +11,7 @@ import data from '../../data.json';
 // --- Components
 import Home from './Home';
 import Article from './Article';
+import EditArticle from './EditArticle';
 
 type Props = {
   match: Match
@@ -28,6 +29,13 @@ const Routing = () => (
           )} {...props} />
 
         )} />
+        <Route path="/edit/:articleName" component={
+          (props: Props) => (
+            <EditArticle article={data.articles.find(
+              article => props.match.params.articleName === article.articleName
+            )} {...props} />
+          )
+        } />
       </Switch>
     </Provider>
   </BrowserRouter>
