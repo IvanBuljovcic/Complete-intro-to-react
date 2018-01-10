@@ -74,9 +74,12 @@
     "dev": "webpack-dev-server",
     "format": "prettier --write --bracket-spacing=true --jsx-bracket-same-line=false --parser=flow --print-width=120 --semi=true --single-quote=true --tab-width=2 --trailing-comma=none --use-tabs=false \"js/**/*.{js,jsx}\"",
     "lint": "eslint js/**/*.{js,jsx} --quiet",
+    "production": "cross-env NODE_ENV=production webpack -p",
+    "server": "cross-env NODE_ENV=server node server.js",
     "test": "cross-env NODE_ENV=test jest",
     "test:c": "cross-env NODE_ENV=test jest --coverage",
-    "test:u": "cross-env NODE_ENV=test jest -u"
+    "test:u": "cross-env NODE_ENV=test jest -u",
+    "watch": "webpack --watch"
   },
   "version": "3.0.0"
 }

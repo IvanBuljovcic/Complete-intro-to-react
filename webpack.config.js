@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 
-module.exports = {
+const config = {
   context: __dirname,
   devtool: 'cheap-eval-source-map',
   devServer: {
@@ -9,12 +9,7 @@ module.exports = {
     publicPath: '/public/',
     hot: true
   },
-  entry: [
-    'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
-    './js/ClientApp.jsx'
-  ],
+  entry: ['webpack-hot-middleware/client?path=__webpack_hmr&timeout=2000', './js/ClientApp.jsx'],
   module: {
     rules: [
       {
@@ -25,7 +20,8 @@ module.exports = {
       },
       {
         test: /\.jsx?$/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        include: [path.resolve('js'), path.resolve('node_modules/preact-compat/src')]
       }
     ]
   },
@@ -36,7 +32,11 @@ module.exports = {
   },
   plugins: [new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin()],
   resolve: {
-    extensions: ['.js', '.jsx', '.json']
+    extensions: ['.js', '.jsx', '.json'],
+    alias: {
+      react: 'preact-compat',
+      'react-dom': 'preact-compat'
+    }
   },
   stats: {
     colors: true,
@@ -44,3 +44,11 @@ module.exports = {
     chunks: true
   }
 };
+
+if (process.env.NODE_ENV === 'production') {
+  config.entry = './js/ClientApp.jsx';
+  config.devtool = false;
+  config.plugins = [];
+}
+
+module.exports = config;
